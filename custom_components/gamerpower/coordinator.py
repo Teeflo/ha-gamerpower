@@ -135,7 +135,7 @@ class GamerPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 if response.status == 200:
                     return await response.json()
                 return {}
-        except Exception as err:
+        except Exception as err:  # noqa: BLE001
             _LOGGER.debug("Could not fetch worth data: %s", err)
             return {}
 
@@ -151,6 +151,6 @@ class GamerPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 if response.status == 200:
                     return await response.json()
                 return None
-        except Exception as err:
+        except Exception as err:  # noqa: BLE001
             _LOGGER.error("Error fetching giveaway %s: %s", giveaway_id, err)
             return None

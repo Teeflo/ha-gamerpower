@@ -33,6 +33,7 @@ jobs:
         uses: hacs/action@main
         with:
           category: integration
+          ignore: brands
 
   lint:
     name: Lint
@@ -52,4 +53,4 @@ jobs:
           pip install ruff
 
       - name: Run Ruff
-        run: ruff check custom_components/gamerpower
+        run: ruff check custom_components/gamerpower --config pyproject.toml
