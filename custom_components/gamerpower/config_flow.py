@@ -49,12 +49,29 @@ class GamerPowerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     f"{API_BASE_URL}{API_ENDPOINT_GIVEAWAYS}", timeout=10
                 ) as response:
                     if response.status in (200, 201):
-                        # Check if already configured
-                        await self.async_set_unique_id(DOMAIN)
+                        # Generate unique_id based on selected platforms and types
+                        platforms = sorted(user_input.get(CONF_PLATFORMS, []))
+                        types = sorted(user_input.get(CONF_TYPES, []))
+                        unique_id_parts = [DOMAIN]
+                        if platforms:
+                            unique_id_parts.append("_".join(platforms))
+                        if types:
+                            unique_id_parts.append("_".join(types))
+                        unique_id = "_".join(unique_id_parts) if len(unique_id_parts) > 1 else f"{DOMAIN}_all"
+                        
+                        await self.async_set_unique_id(unique_id)
                         self._abort_if_unique_id_configured()
 
+                        # Generate descriptive title
+                        title_parts = []
+                        if platforms:
+                            title_parts.append(", ".join(platforms))
+                        if types:
+                            title_parts.append(", ".join(types))
+                        title = f"GamerPower - {' / '.join(title_parts)}" if title_parts else "GamerPower - All Giveaways"
+
                         return self.async_create_entry(
-                            title="GamerPower Giveaways",
+                            title=title,
                             data=user_input,
                         )
                     errors["base"] = "cannot_connect"
