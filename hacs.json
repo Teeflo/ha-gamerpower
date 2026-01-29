@@ -1,6 +1,9 @@
 {
   "name": "GamerPower Giveaways",
-  "homeassistant": "2023.1.0",
+  "homeassistant": "2024.1.0",
+  "hacs": "1.30.0",
   "render_readme": true,
-  "content_in_root": false
+  "content_in_root": false,
+  "zip_release": false,
+  "filename": "gamerpower.zip"
 }
