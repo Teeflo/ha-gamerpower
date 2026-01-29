@@ -1,7 +1,5 @@
 {
   "name": "GamerPower Giveaways",
   "homeassistant": "2023.1.0",
-  "render_readme": true,
-  "domains": ["sensor"],
-  "documentation": "https://github.com/Teeflo/ha-gamerpower"
+  "render_readme": true
 }
