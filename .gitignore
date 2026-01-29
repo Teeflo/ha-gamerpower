@@ -43,22 +43,48 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+test-results/
+
+# Linting and Code Style
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
 # Translations
 *.mo
 *.pot
 
-# IDE
+# IDE and Editor
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
+.cursor/
 
 # OS
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Home Assistant
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Home Assistant / Development
 *.log
 home-assistant.log*
+home-assistant_v2.db
+home-assistant_v2.db-wal
+home-assistant_v2.db-shm
+testing_config/
+secrets.yaml
+AGENTS.md
+agent.md

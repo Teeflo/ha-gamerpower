@@ -109,17 +109,13 @@ class GamerPowerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     @callback
     def async_get_options_flow(
         config_entry: config_entries.ConfigEntry,
-    ) -> GamerPowerOptionsFlowHandler:
+    ) -> config_entries.OptionsFlow:
         """Get the options flow handler."""
-        return GamerPowerOptionsFlowHandler(config_entry)
+        return GamerPowerOptionsFlowHandler()
 
 
 class GamerPowerOptionsFlowHandler(config_entries.OptionsFlow):
     """Handle options flow for GamerPower."""
-
-    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
-        """Initialize options flow."""
-        self.config_entry = config_entry
 
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
@@ -128,7 +124,7 @@ class GamerPowerOptionsFlowHandler(config_entries.OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        # Get current values
+        # Get current values from config_entry (accessed via self.config_entry)
         current_platforms = self.config_entry.data.get(CONF_PLATFORMS, [])
         current_types = self.config_entry.data.get(CONF_TYPES, [])
         current_interval = self.config_entry.data.get(
