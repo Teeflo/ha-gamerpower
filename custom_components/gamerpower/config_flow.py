@@ -46,7 +46,8 @@ class GamerPowerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             try:
                 session = async_get_clientsession(self.hass)
                 async with session.get(
-                    f"{API_BASE_URL}{API_ENDPOINT_GIVEAWAYS}", timeout=10
+                    f"{API_BASE_URL}{API_ENDPOINT_GIVEAWAYS}",
+                    timeout=aiohttp.ClientTimeout(total=10),
                 ) as response:
                     if response.status in (200, 201):
                         # Generate unique_id based on selected platforms and types

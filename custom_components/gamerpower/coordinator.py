@@ -1,7 +1,6 @@
 """Data update coordinator for GamerPower."""
 from __future__ import annotations
 
-import asyncio
 from datetime import timedelta
 import logging
 from typing import Any
@@ -77,7 +76,7 @@ class GamerPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
         except aiohttp.ClientError as err:
             raise UpdateFailed(f"Error communicating with GamerPower API: {err}") from err
-        except asyncio.TimeoutError as err:
+        except TimeoutError as err:
             raise UpdateFailed(f"Timeout fetching GamerPower data: {err}") from err
 
     async def _fetch_giveaways(self) -> list[dict[str, Any]]:
@@ -92,7 +91,9 @@ class GamerPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             if self.giveaway_types:
                 params["type"] = ".".join(self.giveaway_types)
             
-            async with self.session.get(url, params=params, timeout=30) as response:
+            async with self.session.get(
+                url, params=params, timeout=aiohttp.ClientTimeout(total=30)
+            ) as response:
                 if response.status == 201:
                     # No giveaways available
                     return []
@@ -105,7 +106,9 @@ class GamerPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         else:
             # Fetch all giveaways
             url = f"{API_BASE_URL}{API_ENDPOINT_GIVEAWAYS}"
-            async with self.session.get(url, timeout=30) as response:
+            async with self.session.get(
+                url, timeout=aiohttp.ClientTimeout(total=30)
+            ) as response:
                 if response.status == 201:
                     return []
                 if response.status == 200:
@@ -126,7 +129,9 @@ class GamerPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             params["type"] = self.giveaway_types[0]  # API only accepts one type
 
         try:
-            async with self.session.get(url, params=params, timeout=30) as response:
+            async with self.session.get(
+                url, params=params, timeout=aiohttp.ClientTimeout(total=30)
+            ) as response:
                 if response.status == 200:
                     return await response.json()
                 return {}
@@ -140,7 +145,9 @@ class GamerPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         params = {"id": giveaway_id}
         
         try:
-            async with self.session.get(url, params=params, timeout=30) as response:
+            async with self.session.get(
+                url, params=params, timeout=aiohttp.ClientTimeout(total=30)
+            ) as response:
                 if response.status == 200:
                     return await response.json()
                 return None

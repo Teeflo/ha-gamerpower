@@ -1,5 +1,4 @@
 """Constants for the GamerPower integration."""
-from datetime import timedelta
 from typing import Final
 
 DOMAIN: Final = "gamerpower"
