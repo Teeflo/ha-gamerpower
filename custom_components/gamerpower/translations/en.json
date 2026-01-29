@@ -1,0 +1,56 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "GamerPower Giveaways",
+        "description": "Configure the GamerPower integration to track free games and giveaways.",
+        "data": {
+          "platforms": "Platforms to track",
+          "types": "Giveaway types",
+          "scan_interval": "Update interval (minutes)"
+        },
+        "data_description": {
+          "platforms": "Select specific platforms or leave empty for all platforms.",
+          "types": "Select specific giveaway types or leave empty for all types.",
+          "scan_interval": "How often to check for new giveaways (5-1440 minutes)."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to GamerPower API.",
+      "unknown": "Unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "GamerPower is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "GamerPower Options",
+        "description": "Adjust your GamerPower tracking preferences.",
+        "data": {
+          "platforms": "Platforms to track",
+          "types": "Giveaway types",
+          "scan_interval": "Update interval (minutes)"
+        }
+      }
+    }
+  },
+  "services": {
+    "refresh": {
+      "name": "Refresh",
+      "description": "Manually refresh GamerPower data."
+    },
+    "get_giveaway": {
+      "name": "Get Giveaway Details",
+      "description": "Get detailed information about a specific giveaway.",
+      "fields": {
+        "giveaway_id": {
+          "name": "Giveaway ID",
+          "description": "The unique ID of the giveaway to retrieve."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "GamerPower Giveaways",
+        "description": "Configurez l'intégration GamerPower pour suivre les jeux gratuits et giveaways.",
+        "data": {
+          "platforms": "Plateformes à suivre",
+          "types": "Types de giveaway",
+          "scan_interval": "Intervalle de mise à jour (minutes)"
+        },
+        "data_description": {
+          "platforms": "Sélectionnez des plateformes spécifiques ou laissez vide pour toutes.",
+          "types": "Sélectionnez des types spécifiques ou laissez vide pour tous.",
+          "scan_interval": "Fréquence de vérification des nouveaux giveaways (5-1440 minutes)."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de se connecter à l'API GamerPower.",
+      "unknown": "Une erreur inattendue s'est produite."
+    },
+    "abort": {
+      "already_configured": "GamerPower est déjà configuré."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options GamerPower",
+        "description": "Ajustez vos préférences de suivi GamerPower.",
+        "data": {
+          "platforms": "Plateformes à suivre",
+          "types": "Types de giveaway",
+          "scan_interval": "Intervalle de mise à jour (minutes)"
+        }
+      }
+    }
+  },
+  "services": {
+    "refresh": {
+      "name": "Actualiser",
+      "description": "Actualiser manuellement les données GamerPower."
+    },
+    "get_giveaway": {
+      "name": "Obtenir les détails d'un giveaway",
+      "description": "Obtenir les informations détaillées d'un giveaway spécifique.",
+      "fields": {
+        "giveaway_id": {
+          "name": "ID du giveaway",
+          "description": "L'identifiant unique du giveaway à récupérer."
+        }
+      }
+    }
+  }
+}

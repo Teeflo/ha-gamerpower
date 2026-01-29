@@ -1,0 +1,17 @@
+refresh:
+  name: Refresh
+  description: Manually refresh GamerPower giveaway data.
+
+get_giveaway:
+  name: Get Giveaway Details
+  description: Get detailed information about a specific giveaway by its ID.
+  fields:
+    giveaway_id:
+      name: Giveaway ID
+      description: The unique ID of the giveaway to retrieve.
+      required: true
+      example: 525
+      selector:
+        number:
+          min: 1
+          mode: box
