@@ -3,6 +3,7 @@ from datetime import timedelta
 from typing import Final
 
 DOMAIN: Final = "gamerpower"
+VERSION: Final = "1.0.0"
 
 # API Configuration
 API_BASE_URL: Final = "https://www.gamerpower.com/api"

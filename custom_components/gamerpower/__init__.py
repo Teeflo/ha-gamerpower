@@ -16,6 +16,7 @@ from .const import (
     CONF_TYPES,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
+    VERSION,
 )
 from .coordinator import GamerPowerCoordinator
 
@@ -29,6 +30,7 @@ CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Set up the GamerPower component."""
     hass.data.setdefault(DOMAIN, {})
+    _LOGGER.info("Initializing GamerPower integration version %s", VERSION)
     return True
 
 
